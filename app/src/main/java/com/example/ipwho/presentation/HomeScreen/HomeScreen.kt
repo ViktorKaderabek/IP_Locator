@@ -1,12 +1,11 @@
 package com.example.ipwho.presentation.HomeScreen
 
+import android.widget.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
@@ -15,20 +14,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.ipwho.presentation.MainActivity
 import com.example.ipwho.presentation.Screen
+
 
 @Composable
 fun HomeScreen(
     navController: NavController
 ) {
-    Box(
+    var textFieldState by remember {
+        mutableStateOf("")
+    }
+    Column(
         modifier = Modifier
-            .fillMaxSize()
-    )
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
+
         Text(
             text = "Welocme in ip informations detector",
             color = Color.White,
@@ -39,25 +42,66 @@ fun HomeScreen(
             modifier = Modifier
                 .padding(20.dp)
         )
-    }
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Button(
+
+        TextField(
             modifier = Modifier
-                .height(20.dp)
-                .width(100.dp),
-            onClick = {
-                navController
-                    .navigate(Screen.MyIpScreen.route)
+                .fillMaxWidth()
+                .padding(30.dp)
+                .background(Color.White),
+            value = textFieldState,
+            label = {
+                Text(
+                    text = "Enter IP adress",
+                    color = Color.Black
+                )
             },
-            colors = ButtonDefaults.buttonColors(Color.White)
+            onValueChange = {
+                textFieldState = it
+            },
+            singleLine = true,
+            colors = TextFieldDefaults.textFieldColors(Color.White)
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
-            Text(
-                text = "Click me",
-                color = Color.Black,
-            )
+            Button(
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(135.dp)
+                    .background(Color.White),
+                onClick = {
+                    navController
+                        .navigate(Screen.MyIpScreen.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.White)
+
+            ) {
+                Text(
+                    text = "My IP Info",
+                    color = Color.Black,
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(135.dp)
+                    .background(Color.White),
+                onClick = {
+                        navController
+                            .navigate(Screen.MyIpScreen.route)
+                },
+                colors = ButtonDefaults.buttonColors(Color.White)
+
+            ) {
+                Text(
+                    text = "Other IP info",
+                    color = Color.Black,
+                )
+            }
         }
     }
 }
