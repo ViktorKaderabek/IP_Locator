@@ -1,4 +1,4 @@
-package com.example.ipwho.domain
+package com.example.ipwho.domain.model
 
 import com.example.ipwho.data.remote.dto.Connection
 import com.example.ipwho.data.remote.dto.Flag
@@ -14,7 +14,7 @@ data class MyIpInfo(
     val continent_code: String,
     val country: String,
     val country_code: String,
-    val flag: Flag,
+    val flag : Flag,
     val ip: String,
     val is_eu: Boolean,
     val latitude: Double,

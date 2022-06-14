@@ -1,6 +1,6 @@
 package com.example.ipwho.data.remote.dto
 
-import com.example.ipwho.domain.MyIpInfo
+import com.example.ipwho.domain.model.MyIpInfo
 
 data class IpWhoDto(
     val borders: String,
@@ -25,9 +25,27 @@ data class IpWhoDto(
     val type: String
 )
 
-fun ipWHoDto() : MyIpInfo {
+fun IpWhoDto.toMyIpInfo(): MyIpInfo {
     return MyIpInfo(
-        borders = borders,
-        city = ci
+        borders,
+        calling_code,
+        capital,
+        city,
+        connection,
+        continent,
+        continent_code,
+        country,
+        country_code,
+        flag,
+        ip,
+        is_eu,
+        latitude,
+        longitude,
+        postal,
+        region,
+        region_code,
+        success,
+        timezone,
+        type
     )
 }
