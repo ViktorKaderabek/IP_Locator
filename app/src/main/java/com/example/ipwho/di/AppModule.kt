@@ -6,6 +6,7 @@ import com.example.ipwho.data.repository.IpRepositoryImpl
 import com.example.ipwho.domain.repository.IpRepository
 import com.example.ipwho.domain.use_case.GetIpByIpUseCase
 import com.example.ipwho.domain.use_case.GetMyIpUseCase
+import com.example.ipwho.presentation.IpByIpScreen.view_model.IpByIpScreenViewModel
 import com.example.ipwho.presentation.MyIpScreen.view_model.MyIpScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -43,4 +44,4 @@ val AppModule = module {
 
 }
 val myIpInfoVm = module { viewModel { MyIpScreenViewModel(get()) } }
-//val coinDetailVm = module { viewModel { CoinDetailViewModel(get()) } }
+val ipByIpVm = module { viewModel { IpByIpScreenViewModel(get()) } }

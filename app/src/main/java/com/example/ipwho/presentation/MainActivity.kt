@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ipwho.presentation.HomeScreen.HomeScreen
+import com.example.ipwho.presentation.IpByIpScreen.IpByIpScreen
 import com.example.ipwho.presentation.MyIpScreen.MyIpScreen
 import com.example.ipwho.presentation.theme.IpWhoTheme
 
@@ -39,6 +40,11 @@ class MainActivity : ComponentActivity() {
                             route = Screen.MyIpScreen.route
                         ){
                             MyIpScreen()
+                        }
+                        composable(
+                            route = Screen.IpByIpScreen.route
+                        ){
+                            IpByIpScreen()
                         }
                     }
                 }

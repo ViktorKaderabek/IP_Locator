@@ -1,6 +1,5 @@
 package com.example.ipwho.presentation.HomeScreen
 
-import android.widget.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -14,9 +13,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.ipwho.presentation.MainActivity
+import com.example.ipwho.presentation.HomeScreen.HomeScreen.Companion.ip
 import com.example.ipwho.presentation.Screen
 
+class HomeScreen() {
+    companion object {
+        var ip: String? = null
+    }
+}
 
 @Composable
 fun HomeScreen(
@@ -57,6 +61,7 @@ fun HomeScreen(
             },
             onValueChange = {
                 textFieldState = it
+                ip = it
             },
             singleLine = true,
             colors = TextFieldDefaults.textFieldColors(Color.White)
@@ -91,8 +96,8 @@ fun HomeScreen(
                     .width(135.dp)
                     .background(Color.White),
                 onClick = {
-                        navController
-                            .navigate(Screen.MyIpScreen.route)
+                    navController
+                        .navigate(Screen.IpByIpScreen.route)
                 },
                 colors = ButtonDefaults.buttonColors(Color.White)
 
