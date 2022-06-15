@@ -1,18 +1,23 @@
 package com.example.ipwho.presentation.MyIpScreen
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import com.example.ipwho.presentation.MyIpScreen.view_model.MyIpScreenViewModel
 import org.koin.androidx.compose.inject
 
@@ -44,6 +49,22 @@ fun MyIpScreen() {
                         modifier = Modifier
                             .padding(20.dp)
                     )
+
+                    val mapIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("geo:${result.latitude}, ${result.longitude}?q=${result.latitude},${result.longitude} (Label+Name)") // souradnice a pointer
+                    )
+                    val context = LocalContext.current
+                    mapIntent.setPackage("com.google.android.apps.maps")
+                    Button(
+                        onClick = {
+                            startActivity(context, mapIntent, null)
+                        }
+                    ) {
+                        Text("Location of IP")
+                    }
+
+
 
                     Text(
                         text = "IP : ${result.ip}",
@@ -199,8 +220,115 @@ fun MyIpScreen() {
                             .padding(20.dp)
                     )
 
+                    Text(
+                        text = "Connection asn : ${result.connection.asn}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
 
+                    Text(
+                        text = "Connection org : ${result.connection.org}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
 
+                    Text(
+                        text = "Connection isp : ${result.connection.isp}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Connection domain : ${result.connection.domain}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone id : ${result.timezone.id}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone abddr : ${result.timezone.abbr}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone is dst : ${result.timezone.is_dst}",
+                        color = if (result.timezone.is_dst) Color.Green else Color.Red,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone offset : ${result.timezone.offset}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone utc : ${result.timezone.utc}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
+
+                    Text(
+                        text = "Time zone current time : ${result.timezone.current_time}",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .padding(20.dp)
+                    )
                 }
             }
 

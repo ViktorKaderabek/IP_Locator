@@ -11,19 +11,20 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class MyIpScreenViewModel(
-    private val useCase : GetMyIpUseCase
+    private val useCase: GetMyIpUseCase
 ) : ViewModel() {
 
-    private val _state  = mutableStateOf(MyIpScreenViewModelState())
-    val state : State<MyIpScreenViewModelState> = _state
+    private val _state = mutableStateOf(MyIpScreenViewModelState())
+    val state: State<MyIpScreenViewModelState> = _state
+
 
     init {
         getInfoIp()
     }
 
-    private fun getInfoIp(){
+    private fun getInfoIp() {
         useCase().onEach { result ->
-            when(result){
+            when (result) {
                 is Resource.Loading -> {
                     _state.value = MyIpScreenViewModelState(Loading = true)
                 }
@@ -39,5 +40,4 @@ class MyIpScreenViewModel(
             }
         }.launchIn(viewModelScope)
     }
-
 }
