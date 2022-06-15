@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ipwho.presentation.HomeScreen.HomeScreen.Companion.ip
 import com.example.ipwho.presentation.Screen
+import kotlin.random.Random
 
 class HomeScreen() {
     companion object {
@@ -37,7 +38,7 @@ fun HomeScreen(
     ) {
 
         Text(
-            text = "Welocme in ip informations detector",
+            text = "IP Locator \uD83D\uDCCD",
             color = Color.White,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
@@ -104,6 +105,31 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "Other IP info",
+                    color = Color.Black,
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Button(
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(150.dp)
+                    .background(Color.White),
+                onClick = {
+                    navController
+                        .navigate(Screen.IpByIpScreen.route)
+                    ip = "${Random.nextInt(1,254)}.${Random.nextInt(1,254)}.${Random.nextInt(1,254)}.${Random.nextInt(1,254)}"
+                },
+                colors = ButtonDefaults.buttonColors(Color.White)
+
+            ) {
+                Text(
+                    text = "Random IP info",
                     color = Color.Black,
                 )
             }

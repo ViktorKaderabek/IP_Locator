@@ -336,7 +336,32 @@ fun IpByIpScreen() {
         }
 
         if (state.Loading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+
+        if (state.Error?.isNotBlank() == true) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "An unexpected error has occurred, please check your internet connection.",
+                    color = Color.Red,
+                    fontSize = 15.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }

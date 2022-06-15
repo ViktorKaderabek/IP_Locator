@@ -16,11 +16,11 @@ class IpByIpScreenViewModel(
 ) : ViewModel() {
     private val _state = mutableStateOf(IpByIpScreenViewModelState())
     val state: State<IpByIpScreenViewModelState> = _state
-    private val ip = HomeScreen.ip
+    private var ip = HomeScreen.ip
 
     init {
         if (ip != null) {
-            getInfoIp(ip)
+            getInfoIp(ip!!)
         }
     }
 
